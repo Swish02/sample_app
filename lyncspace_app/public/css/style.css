@@ -1,0 +1,19 @@
+body {
+  background-color: #f9f9f9;
+}
+
+.hero {
+  background: linear-gradient(135deg, #0066cc, #0099ff);
+  color: white;
+  padding: 100px 0;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.about {
+  background: white;
+  color: #333;
+}
