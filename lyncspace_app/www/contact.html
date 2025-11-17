@@ -1,0 +1,154 @@
+{% extends "templates/lync_web.html" %}
+
+{% block page_content %}
+
+<style>
+    /* MATCH ORIGINAL CONTAINER WIDTH */
+    .contact-container {
+        max-width: 980px; /* Original site uses ~980px width */
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    /* Title Styling */
+    .contact-title {
+        text-align: center;
+        font-size: 26px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .breadcrumb-area {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    .breadcrumb-area a {
+        color: #27A5F9;
+        text-decoration: none;
+    }
+
+    /* Text paragraph area */
+    .contact-text p {
+        line-height: 1.7;
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+
+    /* Sidebar text */
+    .contact-sidebar p {
+        line-height: 1.5;
+        font-size: 14.5px;
+    }
+
+    .contact-sidebar i {
+        color: #27A5F9;
+        margin-right: 6px;
+    }
+
+    /* Match original map radius */
+    iframe {
+        border-radius: 6px;
+    }
+
+    /* Breakpoints that match original site behaviour */
+
+    @media (max-width: 992px) {
+        .contact-container {
+            max-width: 90%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .contact-title {
+            font-size: 22px;
+        }
+        .contact-sidebar p {
+            font-size: 14px;
+        }
+        iframe {
+            height: 230px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .contact-container {
+            max-width: 100%;
+            padding: 0 10px;
+        }
+        iframe {
+            height: 200px !important;
+        }
+    }
+</style>
+
+
+<div class="contact-container py-4">
+
+    <h1 class="contact-title">Contacts</h1>
+
+    <div class="breadcrumb-area">
+        <a href="/lync">Home</a> / Contacts
+    </div>
+
+    <div class="row gy-4">
+
+        <!-- LEFT CONTENT -->
+        <div class="col-md-8 contact-text">
+
+            <p>
+                We strive to deliver an individual, innovative and affordable service
+                every time and to follow it through an outstanding delivery which is
+                both on time and within budget.
+            </p>
+
+            <div class="p-3 border rounded mb-4">
+                Write to us at 
+                <strong><a href="mailto:contact@lyncspace.com">contact@lyncspace.com</a></strong>,
+                and we anticipate conversing with you soon.
+            </div>
+
+            <div class="ratio ratio-16x9">
+                <iframe
+                    src="https://www.google.com/maps/embed/v1/place?q=LyncSpace%20Software%20Services&key=AIzaSyCkpX2MRDeVFGC4gh98N1KdNV9gn5l6A1I"
+                    allowfullscreen loading="lazy"></iframe>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDEBAR -->
+        <div class="col-md-4 contact-sidebar">
+
+            <h4 class="mb-4">Contacts</h4>
+
+            <p>
+                <i class="bi bi-geo-alt-fill"></i>
+                Level 5, Tamarai Tech Park,<br>
+                S.P. Plot No.16-19 & 20-A,<br>
+                Thiru Vi Ka Industrial Estate,<br>
+                Inner Ring Road, Guindy,<br>
+                Chennai, India
+            </p>
+
+            <p>
+                <i class="bi bi-envelope-fill"></i>
+                <a href="mailto:contact@lyncspace.com">contact@lyncspace.com</a>
+            </p>
+
+            <p>
+                <i class="bi bi-telephone-fill"></i>
+                IN: +91 44 4860 8617
+            </p>
+
+            <p>
+                <i class="bi bi-link-45deg"></i>
+                <a href="http://www.lyncspace.com">www.lyncspace.com</a>
+            </p>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

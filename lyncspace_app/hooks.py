@@ -5,6 +5,7 @@ app_description = "LyncSpace"
 app_email = "brsa8495@gmail.com"
 app_license = "agpl-3.0"
 
+
 # Apps
 # ------------------
 
@@ -241,4 +242,8 @@ app_license = "agpl-3.0"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
+website_context = {
+    "favicon": "/assets/lyncspace_app/favicon.ico",
+    "splash_image": "/assets/lyncspace_app/favicon.ico"
+}
 
