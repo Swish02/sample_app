@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "prompt",
  "creation": "2025-11-16 12:03:59.353533",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -36,10 +37,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-16 12:04:58.145693",
+ "modified": "2025-11-18 17:10:32.830413",
  "modified_by": "Administrator",
  "module": "lyncspace_app",
  "name": "Technology Logo",
+ "naming_rule": "Set by user",
  "owner": "Administrator",
  "permissions": [
   {

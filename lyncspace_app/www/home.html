@@ -2,95 +2,220 @@
 
 {% block page_content %}
 
-<h1>TESTING HOME PAGE RENDER</h1>
 
-<!------------------------------
-      CAROUSEL SECTION
-------------------------------->
-<div class="slider-inner">
-    <div id="da-slider" class="da-slider" style="
-        background-image: url('{{ banner_bg }}');
-        background-size: cover;
-        background-position: 50% 0%;
-    ">
+<div class="hero-slider" style="background-image:url('/assets/lyncspace_app/images/bg.jpg');">
+
+    <div class="hs-inner">
 
         {% for s in slides %}
-        <div class="da-slide {% if loop.first %}da-slide-current{% endif %}">
-            <h2>
-                <i>{{ s.title_line_1 }}</i><br>
-                <i>{{ s.title_line_2 }}</i><br>
-                <i>{{ s.title_line_3 }}</i>
-            </h2>
+        <div class="hs-slide {% if loop.first %}active{% endif %}" data-i="{{ loop.index0 }}">
 
-            <p>
-                {% for line in s.description.split("\n") %}
-                <i>{{ line }}</i><br>
-                {% endfor %}
-            </p>
+            <div class="hs-left">
+                <h2>
+                    <span>{{ s.title_line_1 }}</span><br>
+                    <span>{{ s.title_line_2 }}</span><br>
+                    <span>{{ s.title_line_3 }}</span>
+                </h2>
 
-            <div class="da-img">
+                <p>
+                    {% for line in s.description.split("\n") %}
+                    <span>{{ line }}</span><br>
+                    {% endfor %}
+                </p>
+            </div>
+
+            <div class="hs-right">
                 {% if s.media_type == "Image" %}
-                <img class="img-responsive" src="{{ s.image }}">
+                <img src="{{ s.image }}" alt="">
                 {% else %}
-                <iframe width="530" height="300"
-                        src="{{ s.youtube_embed }}"
-                        allowfullscreen></iframe>
+                <iframe width="520" height="300" src="{{ s.youtube_embed }}" allowfullscreen></iframe>
                 {% endif %}
             </div>
+
         </div>
         {% endfor %}
 
-        <div class="da-arrows">
-            <span class="da-arrows-prev"></span>
-            <span class="da-arrows-next"></span>
-        </div>
+    </div>
 
-        <nav class="da-dots">
-            {% for s in slides %}
-            <span class="{% if loop.first %}da-dots-current{% endif %}"></span>
-            {% endfor %}
-        </nav>
+    <span class="hs-prev">❮</span>
+    <span class="hs-next">❯</span>
 
+    <div class="hs-dots">
+        {% for s in slides %}
+        <span class="{% if loop.first %}active{% endif %}" data-i="{{ loop.index0 }}"></span>
+        {% endfor %}
     </div>
 </div>
 
+<!-- ================================
+     TOP TITLE + SUBTEXT + SEPARATOR
+================================ -->
+<section class="container text-center mt-4">
 
-<!------------------------------
-      HERO TEXT
-------------------------------->
-<section class="hero-text text-center my-5">
-    <h2>{{ hero.big_title }}</h2>
-    <p>{{ hero.description }}</p>
+    <h3 class="mb-2" style="font-weight:500; color:#333;">
+        We will do all that we can, to live up to our client's desire
+    </h3>
+
+    <p class="text-center mb-4" style="max-width:850px; margin:auto; color:#666;">
+        Driven through commitment, quality and innovation. We integrate honesty, integrity 
+        and business ethics into all aspects of our business functioning.
+    </p>
+
+    <!-- separator line like original -->
+    <hr style="border-top: 1px solid #e5e5e5; margin: 30px 0 50px;">
 </section>
 
 
-<!------------------------------
-      FEATURES SECTION
-------------------------------->
-<section class="features container py-5">
-    <div class="row">
-        {% for f in features %}
-        <div class="col-md-4 text-center mb-5">
-            <img src="{{ f.icon }}" style="height:60px;">
-            <h3 class="mt-3">{{ f.title }}</h3>
-            <p>{{ f.description }}</p>
+<!-- ================================
+     STATIC FEATURE CARDS (3 boxes)
+================================ -->
+<section class="container pb-5">
+
+    <div class="row text-center justify-content-center">
+
+        <!-- Commitment -->
+        <div class="col-md-4 mb-4">
+            <div class="hom-card-1 p-4">
+                <i class="fa-solid fa-handshake fa-3x mb-3" style="color:#007acc;"></i>
+                <h4 class="mb-3">Commitment</h4>
+                <p>
+                    We commit ourselves to work consistently to take steps towards your business goals.
+                    We believe in individual commitment of our employees that makes your business more
+                    stable than ever.
+                </p>
+            </div>
         </div>
-        {% endfor %}
+
+        <!-- Quality -->
+        <div class="col-md-4 mb-4">
+            <div class="hom-card-1 p-4">
+                <i class="fa-solid fa-award fa-3x mb-3" style="color:#007acc;"></i>
+                <h4 class="mb-3">Quality</h4>
+                <p>
+                    We strongly believe that the measure of who we are is defined by what we do.
+                    That has always kept us delivering uncompromised quality with outstanding deliverables.
+                </p>
+            </div>
+        </div>
+
+        <!-- Innovation -->
+        <div class="col-md-4 mb-4">
+            <div class="hom-card-1 p-4">
+                <i class="fa-solid fa-lightbulb fa-3x mb-3" style="color:#007acc;"></i>
+                <h4 class="mb-3">Innovation</h4>
+                <p>
+                    Innovation comes from people who enjoy their work. Our clients are served by 
+                    creative individuals who think beyond boundaries and deliver long-lasting value.
+                </p>
+            </div>
+        </div>
+
     </div>
+
 </section>
 
 
-<!------------------------------
-      TECHNOLOGIES
-------------------------------->
-<section class="technology container text-center py-5">
-    <h3 class="mb-4">Technology</h3>
 
-    <div class="d-flex flex-wrap justify-content-center">
-        {% for t in tech_logos %}
-        <img src="{{ t.logo }}" class="m-3" style="height:80px;">
-        {% endfor %}
+<!-- ================================
+     TECHNOLOGY LOGOS (DYNAMIC)
+================================ -->
+<section class="container text-center py-5">
+
+    <h3 class="mb-2" style="font-weight:500;">Technology</h3>
+    <div style="width:120px;height:3px;background:#27A5F9;margin:8px auto 35px;"></div>
+
+    <div class="tech-carousel">
+        <div class="tech-track">
+
+            {% for t in tech_logos %}
+            <div class="tech-item">
+                <img src="{{ t.logo }}" alt="{{ t.tech_name }}">
+            </div>
+            {% endfor %}
+
+            <!-- duplicated items for seamless looping -->
+            {% for t in tech_logos %}
+            <div class="tech-item">
+                <img src="{{ t.logo }}" alt="{{ t.tech_name }}">
+            </div>
+            {% endfor %}
+
+        </div>
     </div>
+
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---------------------------------------------------------------->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const slides = document.querySelectorAll(".hs-slide");
+        const dots = document.querySelectorAll(".hs-dots span");
+
+        let index = 0;
+        let busy = false;
+
+        function slideTo(next) {
+            if (busy || next === index) return;
+            busy = true;
+
+            const current = slides[index];
+            const target = slides[next];
+
+            const direction = next > index ? "next" : "prev";
+
+            // Reset target position first
+            target.classList.remove("left-out", "right-out");
+            target.style.transform = direction === "next"
+                ? "translateX(100%)"
+                : "translateX(-100%)";
+
+            target.classList.add("active");
+
+            setTimeout(() => {
+                current.classList.add(direction === "next" ? "left-out" : "left-out");
+                target.style.transform = "translateX(0)";
+            }, 20);
+
+            setTimeout(() => {
+                // FULL RESET — THIS FIXES YOUR BUG
+                current.classList.remove("active", "right-out", "right-out");
+                current.style.transform = "translateX(100%)";
+
+                dots[index].classList.remove("active");
+                dots[next].classList.add("active");
+
+                index = next;
+                busy = false;
+            }, 700);
+        }
+
+        document.querySelector(".hs-next").onclick = () =>
+            slideTo((index + 1) % slides.length);
+
+        document.querySelector(".hs-prev").onclick = () =>
+            slideTo((index - 1 + slides.length) % slides.length);
+
+        dots.forEach(d => {
+            d.onclick = () => slideTo(parseInt(d.dataset.i));
+        });
+
+    });
+
+</script>
+
 
 {% endblock %}
