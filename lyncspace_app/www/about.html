@@ -187,6 +187,32 @@
 
 </div>
 
+<!--Tools Slider-->
+<section class="container text-center py-5">
+
+    <h3 class="mb-2" style="font-weight:500;">Technology</h3>
+    <div style="width:120px;height:3px;background:#27A5F9;margin:8px auto 35px;"></div>
+
+    <div class="tech-carousel">
+        <div class="tech-track">
+
+            {% for t in tech_logos %}
+            <div class="tech-item">
+                <img src="{{ t.logo }}" alt="{{ t.tech_name }}">
+            </div>
+            {% endfor %}
+
+            <!-- duplicated items for seamless looping -->
+            {% for t in tech_logos %}
+            <div class="tech-item">
+                <img src="{{ t.logo }}" alt="{{ t.tech_name }}">
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</section>
 <!-- JS to animate progress bars on scroll -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
