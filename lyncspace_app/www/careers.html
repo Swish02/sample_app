@@ -1,0 +1,52 @@
+{% extends "templates/lync_web.html" %}
+
+{% block page_content %}
+
+<div class="container my-5">
+
+    <!-- PAGE INTRO -->
+    <h3 class="text-center mb-3" style="font-weight:500;">
+        PASSIONATE TO BUILD INNOVATIVE SOLUTIONS?  
+        WE HAVE AN EMPLOYMENT FOR YOU.
+    </h3>
+
+    <p class="text-center mb-4" style="max-width:850px; margin:auto; color:#555;">
+        We believe people with great passion can make impossible happen.  
+        If you are skilled, creative and eager to grow — we may have a place for you.
+        Interested candidates, send your resume to  
+        <strong>career@lyncspace.com</strong>.
+    </p>
+
+    <hr>
+
+    <h4 class="mt-5 mb-4">Open Positions</h4>
+
+    <!-- DYNAMIC JOB LIST -->
+    {% for job in jobs %}
+    <div class="job-block mb-5 pb-4">
+
+        <h5 class="job-title">{{ job.job_title }}</h5>
+        <p>{{ job.intro }}</p>
+
+        <ul class="job-list">
+            {% for item in job.requirements.split("\n") %}
+                {% if item.strip() %}
+                <li>{{ item }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <!-- APPLY BUTTON (CORRECT POSITION) -->
+        <a href="mailto:career@lyncspace.com?subject=Application%20-%20{{ job.job_title }}"
+           class="btn btn-primary btn-sm mt-2">
+           Apply Now
+        </a>
+
+        <hr>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
