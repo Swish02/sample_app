@@ -2,6 +2,55 @@
 
 {% block page_content %}
 
+<style>
+    .job-block {
+        padding: 20px;
+        border-radius: 6px;
+        background: #fafafa;
+    }
+
+    .job-title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .job-list li {
+        margin-bottom: 6px;
+        line-height: 1.5;
+    }
+
+    /* Mobile fixes */
+    @media (max-width: 768px) {
+        h3, h4 {
+            font-size: 20px !important;
+            text-align: center;
+        }
+
+        .job-block {
+            padding: 15px;
+        }
+
+        .job-title {
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .job-list {
+            padding-left: 18px;
+        }
+
+        .job-block p {
+            text-align: center;
+        }
+
+        .btn-apply {
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+</style>
+
+
 <div class="container my-5">
 
     <!-- PAGE INTRO -->

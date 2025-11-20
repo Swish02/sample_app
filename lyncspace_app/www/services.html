@@ -1,120 +1,110 @@
 {% extends "templates/lync_web.html" %}
 
 {% block page_content %}
-<div class="h-nav">
-    <h1 class="contact-title">Contacts</h1>
 
-    <div class="breadcrumb-area">
-        <a href="/lync">Home</a> / <a href="/contacts">Contacts</a>
+<div class="page-header-section">
+    <div class="container">
+        <h2 class="page-title">Services</h2>
+
+        <div class="breadcrumb">
+            <a href="/home">Home</a> /
+            <span>Services</span>
+        </div>
     </div>
 </div>
 
-<div class="container mt-5 mb-5">
+<section class="services-section">
+    <div class="container">
 
-    <!-- PAGE TITLE -->
-    <h2 class="text-center mb-3" style="font-weight:600;">OUR SERVICES</h2>
-    <p class="text-center mb-5" style="max-width:750px;margin:auto;color:#555;">
-        Our technical expertise is centered on Microsoft, Open Source, mobile applications and other technologies 
-        such as Cloud, IoT and client-side development platforms.  
-        We offer industry best practices in application development, system architecture and technology solutions.
-    </p>
-
-    <div class="row g-5">
-
-        <!-- CLOUD SOLUTIONS -->
-        <div class="col-md-4">
-            <div class="service-box">
-                <div class="icon">
-                    <i class="bi bi-cloud"></i>
-                </div>
-                <h5 class="service-title">CLOUD SOLUTIONS</h5>
-
-                <p>
-                    Our Cloud Technology Solutions are surrounded with positive, friendly and ambitious 
-                    people who have a passion for cloud solutions and technologies.
-                    This passion has helped us deliver trusted cloud-based services to clients.
-                </p>
-            </div>
+        <!-- Section Title -->
+        <div class="section-header text-center">
+            <h3>OUR SERVICES</h3>
+            <p>
+                Our technical expertise is centered on Microsoft, Open Source, mobile applications and other
+                technologies such as Cloud, IoT and client side development platforms. 
+                We offer industry best practices in application development, system architecture and technology solutions.
+            </p>
         </div>
 
-        <!-- APPLICATION DEVELOPMENT -->
-        <div class="col-md-4">
-            <div class="service-box">
-                <div class="icon">
-                    <i class="bi bi-window-stack"></i>
+        <!-- Services Grid -->
+        <div class="row g-4 services-grid">
+
+            <!-- 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <i class="fa-solid fa-cloud fa-2x icon"></i>
+                    <h5>CLOUD SOLUTIONS</h5>
+                    <p>
+                        Our Cloud Technology Solutions help you attain a trustable space in cloud-based
+                        services by delivering secure, scalable and efficient solutions.
+                    </p>
                 </div>
-                <h5 class="service-title">APPLICATION DEVELOPMENT</h5>
-
-                <p>
-                    We help organizations stay on the cutting edge by developing robust applications 
-                    that are secure, scalable and maintainable.
-                    We build custom solutions tailored for the most demanding IT challenges.
-                </p>
             </div>
-        </div>
 
-        <!-- CONSULTING SERVICES -->
-        <div class="col-md-4">
-            <div class="service-box">
-                <div class="icon">
-                    <i class="bi bi-people"></i>
+            <!-- 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <i class="fa-solid fa-laptop-code fa-2x icon"></i>
+                    <h5>APPLICATION DEVELOPMENT</h5>
+                    <p>
+                        We develop robust, scalable, maintainable and custom applications tailored to
+                        your business needs using cutting-edge technologies.
+                    </p>
                 </div>
-                <h5 class="service-title">CONSULTING SERVICES</h5>
-
-                <p>
-                    We provide people outsourcing solutions delivering speed, accuracy, flexibility 
-                    and accountability — backed by domain expertise and a focus on each specific requirement.
-                </p>
             </div>
-        </div>
 
-        <!-- APPLICATION SUPPORT -->
-        <div class="col-md-4">
-            <div class="service-box">
-                <div class="icon">
-                    <i class="bi bi-wrench"></i>
+            <!-- 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <i class="fa-solid fa-handshake fa-2x icon"></i>
+                    <h5>CONSULTING SERVICES</h5>
+                    <p>
+                        We help organizations meet complex requirements with efficient outsourcing,
+                        expert teams, and high-accuracy services.
+                    </p>
                 </div>
-                <h5 class="service-title">APPLICATION SUPPORT & MAINTENANCE</h5>
-
-                <p>
-                    We offer full application support and maintenance services to ensure business continuity, 
-                    long-term value and stable systems for all your critical operations.
-                </p>
             </div>
-        </div>
 
-        <!-- MOBILE DEVELOPMENT -->
-        <div class="col-md-4">
-            <div class="service-box">
-                <div class="icon">
-                    <i class="bi bi-phone"></i>
+            <!-- 4 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <i class="fa-solid fa-gears fa-2x icon"></i>
+                    <h5>APPLICATION SUPPORT & MAINTENANCE</h5>
+                    <p>
+                        We ensure seamless business continuity by offering full-range support and
+                        maintenance services for long-term value.
+                    </p>
                 </div>
-                <h5 class="service-title">MOBILE APPLICATION DEVELOPMENT</h5>
-
-                <p>
-                    Our expert mobile developers help you implement seamless communication and develop 
-                    custom mobile solutions for your enterprise needs.
-                </p>
             </div>
-        </div>
 
-        <!-- ENTERPRISE INTEGRATION -->
-        <div class="col-md-4">
-            <div class="service-box">
-                <div class="icon">
-                    <i class="bi bi-diagram-3"></i>
+            <!-- 5 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <i class="fa-solid fa-mobile-screen fa-2x icon"></i>
+                    <h5>MOBILE APPLICATION DEVELOPMENT</h5>
+                    <p>
+                        Our mobile app developers deliver secure, modern and adaptive mobile apps
+                        that provide real business value.
+                    </p>
                 </div>
-                <h5 class="service-title">ENTERPRISE APPLICATION INTEGRATION</h5>
-
-                <p>
-                    We enable enterprise-grade integration solutions that adapt to changing business demands 
-                    and deliver scalable, compliant and standardized operations.
-                </p>
             </div>
+
+            <!-- 6 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card">
+                    <i class="fa-solid fa-plug-circle-bolt fa-2x icon"></i>
+                    <h5>ENTERPRISE APPLICATION INTEGRATION</h5>
+                    <p>
+                        We integrate enterprise systems to streamline processes, reduce cost, and
+                        gain maximum value from technology investments.
+                    </p>
+                </div>
+            </div>
+
         </div>
 
     </div>
-</div>
+</section>
 
 
 {% endblock %}
