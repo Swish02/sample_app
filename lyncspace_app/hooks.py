@@ -4,7 +4,11 @@ app_publisher = "admin@LyncSpace"
 app_description = "LyncSpace"
 app_email = "brsa8495@gmail.com"
 app_license = "agpl-3.0"
-homepage = "home"
+home_page = "index"
+override_route = {
+    "home": "lyncspace_app.www.index"
+}
+
 
 
 # Apps

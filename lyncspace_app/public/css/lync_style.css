@@ -74,7 +74,7 @@
 }
 
 
-<!----Footer Style--*/ 
+/* Footer Style--*/
 .footer {
     background-color: #111;
     color: #fff;
@@ -86,15 +86,23 @@
     margin-bottom: 30px;
 }
 
+.footer-header {
+    border-bottom: 1px dotted #e4e9f0;
+    margin: 0;
+    padding-bottom: 0;
+}
+
 .footer-title {
     border-bottom: 2px solid #27A5F9;
-    padding-bottom: 6px;
-    margin-bottom: 15px;
+    padding-bottom: 4px;
+    margin-bottom: -2px; /* pulls the blue line into the dotted line */
     display: inline-block;
     font-size: 15px;
     font-weight: 600;
 }
-
+.footer-div-2{
+    margin-top: 10px;
+}
 .footer-links li {
     margin-bottom: 8px;
 }
@@ -127,6 +135,12 @@
 
 .footer-social a:hover {
     color: #27A5F9;
+}
+
+.footer-contact {
+    background-image: url('/assets/lyncspace_app/images/map-img.png') !important;
+    background-repeat: no-repeat;
+
 }
 
 /* Mobile Fixes */
