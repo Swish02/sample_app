@@ -3,6 +3,64 @@
 {% block page_content %}
 
 <style>
+    .breadcrumbs {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 14px;
+        color: #6c757d;
+        /* Grey text */
+        margin-top: 20px;
+        overflow: hidden;
+        padding: 30px 0px;
+        border-bottom: solid 1px #eee;
+        background: url("/assets/lyncspace_app/images/breadcrumbs.png") repeat;
+
+    }
+
+    .breadcrumbs .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .breadcrumbs h1 {
+        margin: 0;
+        font-weight: 10px;
+        font-size: 25px;
+        color: #495057;
+    }
+
+    .breadcrumb {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    .breadcrumb li {
+        margin-right: 5px;
+        color: #1b7ec1;
+    }
+
+    .breadcrumb li a {
+        color: #7b7c7a;
+        /* Blue link like in your example */
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+
+    }
+
+    .breadcrumb li a:hover {
+        text-decoration: underline;
+        color: #0056b3;
+    }
+
+    /* Add slash separator between list items except the last */
+    .breadcrumb li:not(:last-child)::after {
+        content: " /";
+        color: #5a5b5c;
+        margin-left: ""
+    }
+
     .job-block {
         padding: 20px;
         border-radius: 6px;
@@ -21,7 +79,9 @@
 
     /* Mobile fixes */
     @media (max-width: 768px) {
-        h3, h4 {
+
+        h3,
+        h4 {
             font-size: 20px !important;
             text-align: center;
         }
@@ -49,20 +109,29 @@
         }
     }
 </style>
-
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs">
+    <div class="container">
+        <h1>Careers</h1>
+        <ul class="breadcrumb">
+            <li><a href="/index">Home</a></li>
+            <li class="active">Careers</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
 
 <div class="container my-5">
 
     <!-- PAGE INTRO -->
     <h3 class="text-center mb-3" style="font-weight:500;">
-        PASSIONATE TO BUILD INNOVATIVE SOLUTIONS?  
+        PASSIONATE TO BUILD INNOVATIVE SOLUTIONS?
         WE HAVE AN EMPLOYMENT FOR YOU.
     </h3>
 
     <p class="text-center mb-4" style="max-width:850px; margin:auto; color:#555;">
-        We believe people with great passion can make impossible happen.  
+        We believe people with great passion can make impossible happen.
         If you are skilled, creative and eager to grow — we may have a place for you.
-        Interested candidates, send your resume to  
+        Interested candidates, send your resume to
         <strong>career@lyncspace.com</strong>.
     </p>
 
@@ -79,16 +148,16 @@
 
         <ul class="job-list">
             {% for item in job.requirements.split("\n") %}
-                {% if item.strip() %}
-                <li>{{ item }}</li>
-                {% endif %}
+            {% if item.strip() %}
+            <li>{{ item }}</li>
+            {% endif %}
             {% endfor %}
         </ul>
 
         <!-- APPLY BUTTON (CORRECT POSITION) -->
         <a href="mailto:career@lyncspace.com?subject=Application%20-%20{{ job.job_title }}"
-           class="btn btn-primary btn-sm mt-2">
-           Apply Now
+            class="btn btn-primary btn-sm mt-2">
+            Apply Now
         </a>
 
         <hr>

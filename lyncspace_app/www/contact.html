@@ -3,9 +3,68 @@
 {% block page_content %}
 
 <style>
+    .breadcrumbs {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 14px;
+        color: #6c757d;
+        /* Grey text */
+        margin-top: 20px;
+        overflow: hidden;
+        padding: 30px 0px;
+        border-bottom: solid 1px #eee;
+        background: url("/assets/lyncspace_app/images/breadcrumbs.png") repeat;
+
+    }
+
+    .breadcrumbs .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .breadcrumbs h1 {
+        margin: 0;
+        font-weight: 10px;
+        font-size: 25px;
+        color: #495057;
+    }
+
+    .breadcrumb {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    .breadcrumb li {
+        margin-right: 5px;
+        color: #1b7ec1;
+    }
+
+    .breadcrumb li a {
+        color: #7b7c7a;
+        /* Blue link like in your example */
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+
+    }
+
+    .breadcrumb li a:hover {
+        text-decoration: underline;
+        color: #0056b3;
+    }
+
+    /* Add slash separator between list items except the last */
+    .breadcrumb li:not(:last-child)::after {
+        content: " /";
+        color: #5a5b5c;
+        margin-left: ""
+    }
+
     /* MATCH ORIGINAL CONTAINER WIDTH */
     .contact-container {
-        max-width: 1170px; /* Original site uses ~980px width */
+        max-width: 1170px;
+        /* Original site uses ~980px width */
         margin: 0 auto;
         padding: 0 15px;
     }
@@ -66,9 +125,11 @@
         .contact-title {
             font-size: 22px;
         }
+
         .contact-sidebar p {
             font-size: 14px;
         }
+
         iframe {
             height: 230px !important;
         }
@@ -79,20 +140,25 @@
             max-width: 100%;
             padding: 0 10px;
         }
+
         iframe {
             height: 200px !important;
         }
     }
 </style>
 
-
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <ul class="breadcrumb">
+            <li><a href="home.html">Home</a></li>
+            <li class="active">Contact Us</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
 <div class="contact-container py-4">
 
-    <h1 class="contact-title">Contacts</h1>
-
-    <div class="breadcrumb-area">
-        <a href="/lync">Home</a> / Contacts
-    </div>
 
     <div class="row gy-4">
 
@@ -106,7 +172,7 @@
             </p>
 
             <div class="p-3 border rounded mb-4">
-                Write to us at 
+                Write to us at
                 <strong><a href="mailto:contact@lyncspace.com">contact@lyncspace.com</a></strong>,
                 and we anticipate conversing with you soon.
             </div>
@@ -152,5 +218,40 @@
 
     </div>
 </div>
+
+<div class="container py-5">
+    <h2 class="mb-4">Contact Us</h2>
+
+    <form id="contactForm">
+
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input class="form-control" name="lead_name" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input class="form-control" name="email_id" type="email" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input class="form-control" name="phone">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Message</label>
+            <textarea class="form-control" name="note" rows="4"></textarea>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Send Message</button>
+
+        <div id="contactResponse" class="mt-3"></div>
+    </form>
+</div>
+
+<script src="/assets/lyncspace_app/js/contact.js"></script>
+
+
 
 {% endblock %}

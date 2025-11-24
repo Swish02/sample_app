@@ -3,7 +3,61 @@
 {% block page_content %}
 
 <style>
+.breadcrumbs {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  color: #6c757d; /* Grey text */
+ margin-top: 20px;
+  overflow: hidden;
+  padding: 30px 0px;
+    border-bottom: solid 1px #eee;
+   background: url("/assets/lyncspace_app/images/breadcrumbs.png") repeat;
 
+}
+
+.breadcrumbs .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.breadcrumbs h1 {
+  margin: 0;
+  font-weight: 10px;
+  font-size: 25px;
+  color: #495057;
+}
+
+.breadcrumb {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumb li {
+  margin-right: 5px;
+  color:#1b7ec1;
+}
+
+.breadcrumb li a {
+  color: #7b7c7a; /* Blue link like in your example */
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+}
+
+.breadcrumb li a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* Add slash separator between list items except the last */
+.breadcrumb li:not(:last-child)::after {
+  content: " /";
+  color: #5a5b5c;
+  margin-left: ""
+}
 .section-title {
     font-size: 28px;
     font-weight: 600;
@@ -70,16 +124,22 @@
 
 
 </style>
-
+<!--=== Breadcrumbs ===-->
+		<div class="breadcrumbs">
+         <div class="container">
+           <h1>About Us</h1>
+           <ul class="breadcrumb">
+              <li><a href="home.html">Home</a></li>
+              <li class="active">About Us</li>
+           </ul>
+         </div>
+        </div><!--/breadcrumbs-->
 
 
 <div class="container my-5 about-section">
 
-    <!-- Breadcrumb -->
-    <p style="font-size:14px;">
-        <a href="/lync">Home</a> / About Us
-    </p>
-
+  
+   
     <!-- SECTION: We Are LyncSpace -->
     <h3 class="section-title">WE ARE LYNCSPACE</h3>
     <div class="subline"></div>

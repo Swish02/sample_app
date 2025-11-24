@@ -4,10 +4,19 @@ app_publisher = "admin@LyncSpace"
 app_description = "LyncSpace"
 app_email = "brsa8495@gmail.com"
 app_license = "agpl-3.0"
+
 home_page = "index"
-override_route = {
-    "home": "lyncspace_app.www.index"
+
+website_js = [
+    "js/contact.js"
+]
+
+website_context = {
+    "favicon": "/assets/lyncspace_app/public/favicon.ico",
+    "splash_image": "/assets/lyncspace_app/public/favicon.ico"
 }
+
+
 
 
 

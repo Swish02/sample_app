@@ -1,17 +1,75 @@
 {% extends "templates/lync_web.html" %}
 
 {% block page_content %}
+<style>
+    .breadcrumbs {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 14px;
+        color: #6c757d;
+        /* Grey text */
+        margin-top: 20px;
+        overflow: hidden;
+        padding: 30px 0px;
+        border-bottom: solid 1px #eee;
+        background: url("/assets/lyncspace_app/images/breadcrumbs.png") repeat;
 
-<div class="page-header-section">
+    }
+
+    .breadcrumbs .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .breadcrumbs h1 {
+        margin: 0;
+        font-weight: 10px;
+        font-size: 25px;
+        color: #495057;
+    }
+
+    .breadcrumb {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    .breadcrumb li {
+        margin-right: 5px;
+        color: #1b7ec1;
+    }
+
+    .breadcrumb li a {
+        color: #7b7c7a;
+        /* Blue link like in your example */
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+
+    }
+
+    .breadcrumb li a:hover {
+        text-decoration: underline;
+        color: #0056b3;
+    }
+
+    /* Add slash separator between list items except the last */
+    .breadcrumb li:not(:last-child)::after {
+        content: " /";
+        color: #5a5b5c;
+        margin-left: ""
+    }
+</style>
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs">
     <div class="container">
-        <h2 class="page-title">Services</h2>
-
-        <div class="breadcrumb">
-            <a href="/home">Home</a> /
-            <span>Services</span>
-        </div>
+        <h1>Our Services</h1>
+        <ul class="breadcrumb">
+            <li><a href="/index">Home</a></li>
+            <li class="active">Services</li>
+        </ul>
     </div>
-</div>
+</div><!--/breadcrumbs-->
 
 <section class="services-section">
     <div class="container">
@@ -21,8 +79,9 @@
             <h3>OUR SERVICES</h3>
             <p>
                 Our technical expertise is centered on Microsoft, Open Source, mobile applications and other
-                technologies such as Cloud, IoT and client side development platforms. 
-                We offer industry best practices in application development, system architecture and technology solutions.
+                technologies such as Cloud, IoT and client side development platforms.
+                We offer industry best practices in application development, system architecture and technology
+                solutions.
             </p>
         </div>
 
