@@ -204,8 +204,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 🔥 This is where we will plug your effect (individual code)
     function transitionEffect(oldSlide, newSlide, direction) {
         /* replaced per effect */
-        const from = direction === "next" ? "100%" : "-100%";
-    const to   = direction === "next" ? "-100%" : "100%";
+
+     const from = direction === "next" ? "80%" : "-80%";
+    const to   = direction === "next" ? "-80%" : "80%";
 
     newSlide.style.transform = `translateX(${from})`;
     newSlide.style.opacity = "1";
@@ -268,6 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+
 
 
 
