@@ -175,6 +175,7 @@
     height: 427px;
     position: relative;
     background-image: url('/assets/lyncspace_app/images/bg.jpg');
+    transition: background-position 1s ease-out;
 }
 
 /*-------------------------------------------------
@@ -252,7 +253,7 @@
     object-fit: cover;
 
     /* ★ ADDED: smooth media fade-in */
-    opacity: 0;
+    opacity: 2;
     transition: opacity 2s ease;
 }
 
@@ -539,4 +540,10 @@
     .service-card {
         text-align: center;
     }
+}
+
+/*full width background remove bootsrap*/
+main.container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }

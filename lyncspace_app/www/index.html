@@ -5,7 +5,7 @@
 
 <div class="hero-slider">
 
-    <!-- STATIC BACKGROUND -->
+    
     <div class="hs-bg"></div>
 
     {% for s in slides %}
@@ -169,127 +169,106 @@
 <!---------------------------------------------------------------->
 <!-- JS to handle hero slider functionality -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const slides = Array.from(document.querySelectorAll(".hs-slide"));
-    const dots = Array.from(document.querySelectorAll(".hs-dots .dot"));
-    const prevBtn = document.querySelector(".hs-prev");
-    const nextBtn = document.querySelector(".hs-next");
-    const bg = document.querySelector(".hs-bg");
+document.addEventListener("DOMContentLoaded", () => {
 
-    const config = {
-        autoplay: true,
-        autoplayDelay: 6500,
-        animDuration: 200  // ★ ULTRA-SLOW CINEMATIC (matches CSS 2s)
-    };
+    const slider = document.querySelector(".hero-slider");
+    const slides = Array.from(slider.querySelectorAll(".hs-slide"));
+    const prevBtn = slider.querySelector(".hs-prev");
+    const nextBtn = slider.querySelector(".hs-next");
+    const dots = Array.from(slider.querySelectorAll(".hs-dots span"));
+    const bg = slider.querySelector(".hs-bg");
 
     let index = slides.findIndex(s => s.classList.contains("active"));
     if (index < 0) index = 0;
 
-    let autoTimer = null;
     let animating = false;
     let bgPos = 0;
+    const TIME = 600;
 
-    function setActive(newIndex, direction) {
+    // INITIAL STYLES
+    slides.forEach((s, i) => {
+        s.style.position = "absolute";
+        s.style.inset = "0";
+        s.style.transition = "transform .6s ease, opacity .6s ease";
+        s.style.opacity = i === index ? "1" : "0";
+        s.style.transform = "translateX(0)";
+        s.style.zIndex = i === index ? "2" : "1";
+    });
+
+    function updateDots(i) {
+        dots.forEach((d, x) => {
+            d.classList.toggle("active", x === i);
+        });
+    }
+
+    // 🔥 This is where we will plug your effect (individual code)
+    function transitionEffect(oldSlide, newSlide, direction) {
+        /* replaced per effect */
+        const from = direction === "next" ? "100%" : "-100%";
+    const to   = direction === "next" ? "-100%" : "100%";
+
+    newSlide.style.transform = `translateX(${from})`;
+    newSlide.style.opacity = "1";
+
+    requestAnimationFrame(() => {
+        newSlide.style.transform = "translateX(0)";
+        oldSlide.style.transform = `translateX(${to})`;
+    });
+    }
+
+    function go(newIndex, direction) {
         if (animating || newIndex === index) return;
         animating = true;
 
-        const current = slides[index];
-        const next = slides[newIndex];
+        const oldSlide = slides[index];
+        const newSlide = slides[newIndex];
 
-        current.classList.add("exit");
-        current.classList.remove("active");
+        newSlide.style.zIndex = "3";
+        oldSlide.style.zIndex = "2";
 
-        next.classList.remove("exit");
-        next.classList.add("active");
+        transitionEffect(oldSlide, newSlide, direction);
 
-        // Update dots
-        dots.forEach(d => d.classList.remove("active"));
-        if (dots[newIndex]) dots[newIndex].classList.add("active");
-
-        // Background parallax with same slow easing
-        const step = 50;
-        if (direction === "next") bgPos += step;
-        else bgPos -= step;
-
-        bg.style.backgroundPosition = `calc(50% + ${bgPos}px) center`;
+        // background parallax same for all
+        if (bg) {
+            bgPos += direction === "next" ? -40 : 40;
+            bg.style.transition = "background-position .6s ease";
+            bg.style.backgroundPosition = `calc(50% + ${bgPos}px) center`;
+        }
 
         setTimeout(() => {
-            current.classList.remove("exit");
-            animating = false;
+            oldSlide.style.opacity = "0";
+            newSlide.style.opacity = "1";
             index = newIndex;
-        }, config.animDuration + 50);
+            updateDots(index);
+            animating = false;
+        }, TIME);
     }
 
     function next() {
-        const ni = (index + 1) % slides.length;
-        setActive(ni, "next");
+        go((index + 1) % slides.length, "next");
     }
 
     function prev() {
-        const ni = (index - 1 + slides.length) % slides.length;
-        setActive(ni, "prev");
+        go((index - 1 + slides.length) % slides.length, "prev");
     }
 
     // Buttons
-    nextBtn.addEventListener("click", () => { next(); resetAuto(); });
-    prevBtn.addEventListener("click", () => { prev(); resetAuto(); });
+    nextBtn.addEventListener("click", next);
+    prevBtn.addEventListener("click", prev);
 
     // Dots
-    dots.forEach(d => d.addEventListener("click", e => {
-        const i = Number(e.currentTarget.dataset.i);
-        if (i > index) setActive(i, "next");
-        else if (i < index) setActive(i, "prev");
-        resetAuto();
-    }));
-
-    // Keyboard
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") { next(); resetAuto(); }
-        if (e.key === "ArrowLeft") { prev(); resetAuto(); }
+    dots.forEach(d => {
+        d.addEventListener("click", () => {
+            const i = Number(d.dataset.i);
+            if (i === index) return;
+            const dir = i > index ? "next" : "prev";
+            go(i, dir);
+        });
     });
 
-    // Autoplay
-    function startAuto() {
-        if (!config.autoplay) return;
-        stopAuto();
-        autoTimer = setInterval(next, config.autoplayDelay);
-    }
-    function stopAuto() {
-        if (autoTimer) clearInterval(autoTimer);
-        autoTimer = null;
-    }
-    function resetAuto() {
-        stopAuto();
-        startAuto();
-    }
-
-    // Hover pause
-    const sliderEl = document.querySelector(".hero-slider");
-    sliderEl.addEventListener("mouseenter", stopAuto);
-    sliderEl.addEventListener("mouseleave", startAuto);
-
-    // Touch swipe
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    sliderEl.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    sliderEl.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        const dx = touchStartX - touchEndX;
-
-        if (Math.abs(dx) > 40) {
-            if (dx > 0) next();
-            else prev();
-            resetAuto();
-        }
-    }, { passive: true });
-
-    startAuto();
 });
 </script>
+
 
 
 

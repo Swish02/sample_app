@@ -227,21 +227,25 @@
         <div class="mb-3">
             <label class="form-label">Name</label>
             <input class="form-control" name="lead_name" required>
+            <p class="error-text text-danger small mt-1" data-error-for="lead_name"></p>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Email</label>
             <input class="form-control" name="email_id" type="email" required>
+            <p class="error-text text-danger small mt-1" data-error-for="email_id"></p>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Phone</label>
             <input class="form-control" name="phone">
+            <p class="error-text text-danger small mt-1" data-error-for="phone"></p>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Message</label>
             <textarea class="form-control" name="note" rows="4"></textarea>
+            <p class="error-text text-danger small mt-1" data-error-for="notes"></p>
         </div>
 
         <button class="btn btn-primary" type="submit">Send Message</button>
