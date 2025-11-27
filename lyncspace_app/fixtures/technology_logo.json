@@ -1,0 +1,82 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Technology Logo",
+  "logo": "/private/files/Angular.png",
+  "modified": "2025-11-20 11:10:56.777674",
+  "name": "angular",
+  "order": 1,
+  "published": 1,
+  "tech_name": "Angular Js"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Technology Logo",
+  "logo": "/private/files/css.png",
+  "modified": "2025-11-20 11:13:54.616033",
+  "name": "css",
+  "order": 2,
+  "published": 1,
+  "tech_name": "Css"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Technology Logo",
+  "logo": "/private/files/html.png",
+  "modified": "2025-11-20 11:14:41.454276",
+  "name": "html",
+  "order": 3,
+  "published": 1,
+  "tech_name": "HTML"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Technology Logo",
+  "logo": "/private/files/msAzure.png",
+  "modified": "2025-11-20 11:15:31.980324",
+  "name": "azure",
+  "order": 4,
+  "published": 1,
+  "tech_name": "Microsoft Azure"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Technology Logo",
+  "logo": "/private/files/node.png",
+  "modified": "2025-11-20 11:16:18.529291",
+  "name": "node js",
+  "order": 5,
+  "published": 1,
+  "tech_name": "Node JS"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Technology Logo",
+  "logo": "/private/files/mv.net.png",
+  "modified": "2025-11-20 11:17:01.210324",
+  "name": "dot net",
+  "order": 6,
+  "published": 1,
+  "tech_name": "DotNet"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Technology Logo",
+  "logo": "/private/files/frappe.png",
+  "modified": "2025-11-20 11:22:36.311618",
+  "name": "frappe",
+  "order": 7,
+  "published": 1,
+  "tech_name": "Frappe"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Technology Logo",
+  "logo": "/private/files/Azura.png",
+  "modified": "2025-11-20 11:23:34.867870",
+  "name": "azura",
+  "order": 8,
+  "published": 1,
+  "tech_name": "Azura"
+ }
+]

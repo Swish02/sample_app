@@ -261,3 +261,23 @@ website_context = {
     "splash_image": "/assets/lyncspace_app/public/favicon.ico"
 }
 
+fixtures = [
+    # Homepage slider slides (only published records)
+    {
+        "dt": "Homepage Carousel Slide",
+        "filters": [["published", "=", 1]],
+    },
+    # Features (cards)
+    {
+        "dt": "Feature",
+        "filters": [["published", "=", 1]],
+    },
+    # Technology logos
+    {
+        "dt": "Technology Logo",
+        "filters": [["published", "=", 1]],
+    },
+    # Single record doctype
+    "Hero Section Text",
+]
+

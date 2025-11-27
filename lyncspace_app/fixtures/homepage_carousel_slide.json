@@ -1,0 +1,32 @@
+[
+ {
+  "description": "We will do all that we can,\nto live up to our client's desire",
+  "docstatus": 0,
+  "doctype": "Homepage Carousel Slide",
+  "image": "/files/Pasted image.png",
+  "media_type": "Image",
+  "modified": "2025-11-24 17:29:09.508214",
+  "name": "home page",
+  "order": 2,
+  "published": 1,
+  "title_line_1": "Cloud Solutions",
+  "title_line_2": "Application Development",
+  "title_line_3": "Technology Consulting",
+  "youtube_embed": null
+ },
+ {
+  "description": "We believe people with great passion\ncan make impossible happen.\n\nThe only way to do great work is to love what you do - Steve Jobs",
+  "docstatus": 0,
+  "doctype": "Homepage Carousel Slide",
+  "image": null,
+  "media_type": "YouTube",
+  "modified": "2025-11-24 17:20:09.586075",
+  "name": "home page 2",
+  "order": 2,
+  "published": 1,
+  "title_line_1": "We are hiring",
+  "title_line_2": "Passionate, Creative",
+  "title_line_3": "and Innovative Individuals",
+  "youtube_embed": "https://www.youtube.com/embed/PznJqxon4zE?si=53LOCBRTRdZLv6pg"
+ }
+]
