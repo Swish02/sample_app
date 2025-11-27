@@ -85,14 +85,16 @@
 
 <body>
 
+    {% block navbar %}
     {% include "templates/includes/header.html" %}
+    {% endblock %}
 
     {% if page_title %}
     <div class="breadcrumb-strip" style="
-    background:#f7f7f7;
-    border-bottom:1px solid #e5e5e5;
-    padding:20px 0;
-">
+        background:#f7f7f7;
+        border-bottom:1px solid #e5e5e5;
+        padding:20px 0;
+    ">
         <div class="container">
             <h3 style="margin:0;font-weight:600;color:#555;">{{ page_title }}</h3>
 
@@ -110,7 +112,9 @@
         {% block page_content %}{% endblock %}
     </main>
 
+    {% block footer %}
     {% include "templates/includes/footer.html" %}
+    {% endblock %}
 
 </body>
 

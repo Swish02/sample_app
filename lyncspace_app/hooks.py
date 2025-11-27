@@ -17,6 +17,7 @@ website_context = {
 }
 
 
+base_template = "templates/lync_web.html"
 
 
 
