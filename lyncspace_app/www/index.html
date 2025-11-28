@@ -5,7 +5,7 @@
 
 <div class="hero-slider">
 
-    
+    <!-- STATIC BACKGROUND -->
     <div class="hs-bg"></div>
 
     {% for s in slides %}
@@ -20,20 +20,22 @@
             </h2>
 
             <p>
-                {% for line in s.description.split("\n") %}
-                    {% if line.strip() %}
-                    <span>{{ line }}</span><br>
-                    {% endif %}
-                {% endfor %}
+                {% if s.description %}
+                    {% for line in s.description.split("\n") %}
+                        {% if line.strip() %}
+                        <span>{{ line }}</span><br>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
             </p>
         </div>
 
         <!-- Media -->
-        {% if s.media_type != "None" %}
+        {% if s.media_type and s.media_type != "None" %}
         <div class="hs-media">
-            {% if s.media_type == "Image" %}
+            {% if s.media_type == "Image" and s.image %}
                 <img src="{{ s.image }}">
-            {% else %}
+            {% elif s.media_type == "YouTube" and s.youtube_embed %}
                 <iframe
                     src="https://www.youtube-nocookie.com/embed/{{ s.youtube_embed }}?rel=0&modestbranding=1&controls=1&iv_load_policy=3&fs=1"
                     allowfullscreen>
@@ -44,15 +46,18 @@
     </div>
     {% endfor %}
 
+    <!-- Arrows -->
     <span class="hs-prev">❮</span>
     <span class="hs-next">❯</span>
 
+    <!-- Dots -->
     <div class="hs-dots">
         {% for s in slides %}
         <span class="{% if loop.first %}active{% endif %}" data-i="{{ loop.index0 }}"></span>
         {% endfor %}
     </div>
 </div>
+
 
 
 
