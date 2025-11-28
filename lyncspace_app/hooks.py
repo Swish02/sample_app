@@ -16,8 +16,32 @@ website_context = {
     "splash_image": "/assets/lyncspace_app/public/favicon.ico"
 }
 
+override_whitelisted_methods = {}
 
-base_template = "templates/lync_web.html"
+# IMPORTANT: Correct path + correct folder name (website_templates)
+override_doctype_templates = {
+    "Web Page": "templates/website_templates/web_page_wrapper.html"
+}
+
+
+override_website_settings_template = "lyncspace_app/lyncspace_app/templates/lync_web.html"
+
+override_template_map = {
+    # Web Page DocType (this applies to /demo now that Content Type = HTML)
+    "frappe/templates/web.html": "lyncspace_app/lyncspace_app/templates/lync_web.html",
+
+    # ERPNext website templates (if ERPNext modules generate pages)
+    "erpnext/templates/includes/navbar.html": "lyncspace_app/lyncspace_app/templates/includes/header.html",
+    "erpnext/templates/includes/footer.html": "lyncspace_app/lyncspace_app/templates/includes/footer.html",
+    "erpnext/templates/web.html": "lyncspace_app/lyncspace_app/templates/lync_web.html",
+}
+
+
+
+
+
+
+
 
 
 
