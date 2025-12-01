@@ -1,0 +1,13 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening",
+  "intro": "This document outlines the key requirements for developing the website. It covers the purpose of the site, the features to be included, the design expectations, and the technical specifications needed to complete the project. The goal is to ensure a clear understanding between the developer and the client about what will be built, how it will function, and what standards it must meet. This helps avoid confusion during development and ensures the final website matches the client’s expecta",
+  "job_title": "web developer",
+  "modified": "2025-11-24 12:41:56.984030",
+  "name": "d31mkq2p8f",
+  "published": 1,
+  "requirements": "<div class=\"ql-editor read-mode\"><h3><strong> Technical Skills</strong></h3><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Strong in <strong>HTML, CSS, JavaScript</strong></li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Knowledge of <strong>responsive design</strong> (Flexbox, Grid, media queries)</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Frontend frameworks: <strong>React / Vue / Angular</strong> (any one is enough)</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>CSS frameworks: <strong>Bootstrap / Tailwind</strong></li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Backend basics: <strong>Node.js, Express, Python, PHP, or Django</strong></li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Database handling: <strong>MySQL, MongoDB, PostgreSQL</strong></li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>API usage: <strong>REST APIs, JSON</strong></li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Version control: <strong>Git &amp; GitHub</strong></li></ol><p><br></p></div>",
+  "sort_order": 1
+ }
+]

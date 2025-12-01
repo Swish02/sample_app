@@ -262,22 +262,38 @@ website_context = {
 }
 
 fixtures = [
+    
     # Homepage slider slides (only published records)
     {
         "dt": "Homepage Carousel Slide",
         "filters": [["published", "=", 1]],
     },
+    
     # Features (cards)
     {
         "dt": "Feature",
         "filters": [["published", "=", 1]],
     },
+    
     # Technology logos
     {
         "dt": "Technology Logo",
         "filters": [["published", "=", 1]],
     },
+    
     # Single record doctype
     "Hero Section Text",
+        
+        # Careers – ERPNext Job Opening records
+    {
+        "dt": "Job Opening",
+        "filters": [["published", "=", 1]],
+    },
+       
+        # ABOUT PAGE
+    {
+        "dt": "Technology Skill",
+        "filters": [["published", "=", 1]],
+    },
 ]
 

@@ -1,0 +1,42 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Technology Skill",
+  "modified": "2025-11-20 10:55:03.723166",
+  "name": 1,
+  "percentage": 88,
+  "published": 1,
+  "sort_order": 1,
+  "tech_name": "Angular Js"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Technology Skill",
+  "modified": "2025-11-20 10:56:46.830708",
+  "name": 2,
+  "percentage": 86,
+  "published": 1,
+  "sort_order": 2,
+  "tech_name": "SharePoint"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Technology Skill",
+  "modified": "2025-11-20 10:57:18.311705",
+  "name": 3,
+  "percentage": 97,
+  "published": 1,
+  "sort_order": 3,
+  "tech_name": "HTML/CSS"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Technology Skill",
+  "modified": "2025-11-20 10:58:32.043116",
+  "name": 4,
+  "percentage": 69,
+  "published": 1,
+  "sort_order": 4,
+  "tech_name": "Cloud Applications"
+ }
+]
