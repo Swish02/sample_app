@@ -1,8 +1,8 @@
 import frappe
 
 def get_context(context):
+    context.no_cache = 1  # optional, so changes show immediately
 
-    # Fetch job openings ordered properly
     context.jobs = frappe.get_all(
         "Job Opening",
         filters={"published": 1},
@@ -11,10 +11,10 @@ def get_context(context):
             "job_title",
             "intro",
             "requirements",
-            "sort_order"
+            "sort_order",
         ],
-        order_by="sort_order asc"
+        order_by="sort_order asc",
+        ignore_permissions=True,  # 🔥 important for public website
     )
 
     return context
-
