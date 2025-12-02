@@ -10,11 +10,19 @@ home_page = "index"
 website_js = [
     "js/contact.js"
 ]
-
+website_css=[
+    "css/lync_style.css"
+]
 website_context = {
     "favicon": "/assets/lyncspace_app/public/favicon.ico",
-    "splash_image": "/assets/lyncspace_app/public/favicon.ico"
+    "splash_image": "apps/lyncspace_app/lyncspace_app/public/favicon.ico"
 }
+
+before_request = [
+    "lyncspace_app.api.block_desk_access",
+    "lyncspace_app.api.autocorrect_routes"
+]
+
 
 
 

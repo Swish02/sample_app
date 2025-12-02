@@ -3,63 +3,6 @@
 {% block page_content %}
 
 <style>
-    .breadcrumbs {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 14px;
-        color: #6c757d;
-        /* Grey text */
-        margin-top: 20px;
-        overflow: hidden;
-        padding: 30px 0px;
-        border-bottom: solid 1px #eee;
-        background: url("/assets/lyncspace_app/images/breadcrumbs.png") repeat;
-
-    }
-
-    .breadcrumbs .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .breadcrumbs h1 {
-        margin: 0;
-        font-weight: 10px;
-        font-size: 25px;
-        color: #495057;
-    }
-
-    .breadcrumb {
-        list-style: none;
-        display: flex;
-        margin: 0;
-        padding: 0;
-    }
-
-    .breadcrumb li {
-        margin-right: 5px;
-        color: #1b7ec1;
-    }
-
-    .breadcrumb li a {
-        color: #7b7c7a;
-        /* Blue link like in your example */
-        text-decoration: none;
-        transition: color 0.2s ease-in-out;
-
-    }
-
-    .breadcrumb li a:hover {
-        text-decoration: underline;
-        color: #0056b3;
-    }
-
-    /* Add slash separator between list items except the last */
-    .breadcrumb li:not(:last-child)::after {
-        content: " /";
-        color: #5a5b5c;
-        margin-left: ""
-    }
 
     /* MATCH ORIGINAL CONTAINER WIDTH */
     .contact-container {
@@ -145,6 +88,70 @@
             height: 200px !important;
         }
     }
+
+
+    /* CONTACT FORM WRAPPER */
+    .contact-box {
+        max-width: 650px;
+        margin: auto;
+        padding: 40px;
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e9eef5;
+    }
+
+    /* Header */
+    .contact-box h2 {
+        font-weight: 600;
+        margin-bottom: 25px;
+        color: #0c1e35;
+        text-align: center;
+    }
+
+    /* Input + Textarea */
+    .contact-box .form-control {
+        border: 1px solid #d4dce6;
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 15px;
+        transition: 0.25s ease;
+        background: #f9fbfe;
+    }
+
+    .contact-box .form-control:focus {
+        border-color: #1a73e8;
+        box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.25);
+        background: #ffffff;
+    }
+
+    /* Button */
+    .contact-box button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 8px;
+        background: #1a73e8;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+    .contact-box button:hover {
+        background: #0f5ec4;
+    }
+
+    /* Success/Error Response */
+    #contactResponse {
+        text-align: center;
+        font-weight: 500;
+    }
+
+    @media (max-width: 576px) {
+        .contact-box {
+            padding: 25px;
+        }
+    }
 </style>
 
 <!--=== Breadcrumbs ===-->
@@ -220,38 +227,41 @@
 </div>
 
 <div class="container py-5">
-    <h2 class="mb-4">Contact Us</h2>
+    <div class="contact-box">
+        <h2 class="mb-4">Contact Us</h2>
 
-    <form id="contactForm">
+        <form id="contactForm">
 
-        <div class="mb-3">
-            <label class="form-label">Name</label>
-            <input class="form-control" name="lead_name" required>
-            <p class="error-text text-danger small mt-1" data-error-for="lead_name"></p>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input class="form-control" name="lead_name" required>
+                <p class="error-text text-danger small mt-1" data-error-for="lead_name"></p>
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input class="form-control" name="email_id" type="email" required>
-            <p class="error-text text-danger small mt-1" data-error-for="email_id"></p>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input class="form-control" name="email_id" type="email" required>
+                <p class="error-text text-danger small mt-1" data-error-for="email_id"></p>
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label">Phone</label>
-            <input class="form-control" name="phone">
-            <p class="error-text text-danger small mt-1" data-error-for="phone"></p>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Phone</label>
+                <input class="form-control" name="phone">
+                <p class="error-text text-danger small mt-1" data-error-for="phone"></p>
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label">Message</label>
-            <textarea class="form-control" name="note" rows="4"></textarea>
-            <p class="error-text text-danger small mt-1" data-error-for="notes"></p>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Message</label>
+                <textarea class="form-control" name="note" rows="4"></textarea>
+                <p class="error-text text-danger small mt-1" data-error-for="notes"></p>
+            </div>
 
-        <button class="btn btn-primary" type="submit">Send Message</button>
+            <button class="btn btn-primary" type="submit">Send Message</button>
 
-        <div id="contactResponse" class="mt-3"></div>
-    </form>
+            <div id="contactResponse" class="mt-3"></div>
+        </form>
+    </div>
+
 </div>
 
 <script src="/assets/lyncspace_app/js/contact.js"></script>

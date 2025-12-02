@@ -1,8 +1,22 @@
 import re
+import difflib
 import frappe
 from frappe.utils import validate_email_address, escape_html
+from werkzeug.exceptions import HTTPException
 
+# SAFE REDIRECT CLASS
+class SafeRedirect(HTTPException):
+    code = 302
+    def __init__(self, location):
+        super().__init__()
+        self.location = location
 
+    def get_response(self, environ=None):
+        from werkzeug.wrappers import Response
+        resp = Response("", status=302)
+        resp.headers["Location"] = self.location
+        return resp
+    
 @frappe.whitelist(allow_guest=True)
 def submit_contact(lead_name=None, email_id=None, phone=None, notes=None):
     # ---------- Normalize ----------
@@ -88,3 +102,142 @@ def submit_contact(lead_name=None, email_id=None, phone=None, notes=None):
             "status": "error",
             "message": "Internal error while saving your details. Please try again later.",
         }
+
+
+
+# BLOCK PUBLIC ACCESS TO /app (Desk)
+
+
+# def block_desk_access():
+#     request = frappe.local.request
+#     path = (request.path or "")
+
+#     # allowed for all
+#     if path.startswith("/api") or path.startswith("/assets") or path.startswith("/files"):
+#         return
+
+#     # Desk login/logout to be blocked for guest
+#     DESK_PROTECTED = [
+#         "/app/login",
+#         "/app/logout",
+#     ]
+
+#     # Block desk login pages
+#     if path in DESK_PROTECTED and frappe.session.user == "Guest":
+#         raise SafeRedirect("/")
+
+#     # Block desk area entirely for guest
+#     if path.startswith("/app") and frappe.session.user == "Guest":
+#         raise SafeRedirect("/")
+
+
+
+# AUTO-CORRECT ROUTES
+
+# ---------------------------------------------------------
+# 2) AUTO-CORRECT WRONG URLS (FUZZY MATCHING)
+# ---------------------------------
+VALID_ROUTES = [
+    "/", "/home", "/index",
+    "/about", "/services", "/careers", "/contact"
+]
+
+def autocorrect_routes():
+    request = frappe.local.request
+    path = (request.path or "").lower()
+
+    if path == "/home":
+        raise SafeRedirect("/index")
+
+    # Ignore internal paths
+    if (
+        path.startswith("/app")
+        or path.startswith("/api")
+        or path.startswith("/assets")
+        or path.startswith("/files")
+    ):
+        return
+
+    # Valid route
+    if path in VALID_ROUTES:
+        return
+
+    # fuzzy match
+    match = difflib.get_close_matches(path, VALID_ROUTES, n=1, cutoff=0.6)
+    if match:
+        raise SafeRedirect(match[0])
+
+
+# ALLOWED LOGIN ROLES
+# -----------------------------------------
+
+# System Role allowed full access:
+SYSTEM_ALLOWED = ["Administrator"]
+
+# Website User allowed login (but NOT desk):
+WEB_LOGIN_ALLOWED = ["Member"]
+
+
+# -----------------------------------------
+# BLOCK LOGIN + DESK ACCESS
+# -----------------------------------------
+def block_desk_access():
+    req = frappe.local.request
+    path = (req.path or "")
+    user = frappe.session.user
+
+    # -----------------------------------------
+    # ALWAYS ALLOW SYSTEM ASSETS / API
+    # -----------------------------------------
+    if path.startswith(("/assets", "/api", "/files")):
+        return
+
+    # -----------------------------------------
+    # GUEST RESTRICTIONS
+    # -----------------------------------------
+    if user == "Guest":
+
+        # Guest visiting /login → block
+        if path == "/login":
+            raise SafeRedirect("/")
+        if path =="/logout":
+            raise SafeRedirect("/")
+        # Guest visiting /app → block
+        if path.startswith("/app"):
+            raise SafeRedirect("/")
+
+        return  # Guest visiting public pages → allowed
+
+    # -----------------------------------------
+    # LOGGED-IN USER LOGIC
+    # -----------------------------------------
+    user_type = frappe.db.get_value("User", user, "user_type")
+    roles = frappe.get_roles(user)
+
+    # -----------------------------------------
+    # 1) ADMINISTRATOR → ALLOWED EVERYTHING
+    # -----------------------------------------
+    if user in SYSTEM_ALLOWED:
+        return
+
+    # -----------------------------------------
+    # 2) WEBSITE USER ACCESS LOGIC
+    # -----------------------------------------
+    if user_type == "Website User":
+
+        # Member → can login, but NOT enter desk
+        if "Member" in roles:
+            if path.startswith("/app"):
+                raise SafeRedirect("/")
+            return
+
+        # Customer or others → logout + block
+        frappe.local.response = {"type": "redirect", "location": "/"}
+        return
+
+    # -----------------------------------------
+    # 3) SYSTEM USER BUT NOT ADMIN
+    # Allowed login + desk (normal employees)
+    # -----------------------------------------
+    if user_type == "System User":
+        return
