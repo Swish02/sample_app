@@ -8,7 +8,7 @@
         font-size: 14px;
         color: #6c757d;
         /* Grey text */
-        margin-top: 20px;
+      
         overflow: hidden;
         padding: 30px 0px;
         border-bottom: solid 1px #eee;
@@ -62,7 +62,7 @@
     }
 
     .job-block {
-        padding: 20px;
+        padding: 15px;
         border-radius: 6px;
         background: #fafafa;
     }
@@ -77,13 +77,38 @@
         line-height: 1.5;
     }
 
+    .job-block p {
+            text-align: justify;
+           
+            margin-bottom: 5px !important;
+
+        }
+
+        h3,
+        h4 {
+            font-size: 20px !important;
+            text-align: left;
+        }
+
+        .job-list {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.job-list li {
+    list-style-type: none !important;
+}
+
+
+
     /* Mobile fixes */
     @media (max-width: 768px) {
 
         h3,
         h4 {
             font-size: 20px !important;
-            text-align: center;
+            text-align: left;
         }
 
         .job-block {
@@ -92,21 +117,26 @@
 
         .job-title {
             font-size: 18px;
-            text-align: center;
+            text-align: left;
         }
 
         .job-list {
-            padding-left: 18px;
+            padding-left: 0px;
+               list-style: none;
         }
 
         .job-block p {
-            text-align: center;
+            text-align: justify;
+           
+            margin-bottom: 5px !important;
+
         }
 
         .btn-apply {
             width: 100%;
             margin-top: 10px;
         }
+       
     }
 </style>
 <!--=== Breadcrumbs ===-->
