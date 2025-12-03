@@ -62,13 +62,13 @@
  {
   "docstatus": 0,
   "doctype": "Technology Logo",
-<<<<<<< HEAD
+
   "logo": "/files/Azura.png",
   "modified": "2025-12-01 17:00:30.547618",
-=======
+
   "logo": "/files/node.png",
   "modified": "2025-12-01 16:49:24.860377",
->>>>>>> 387aa583c236dbc49dbceb227422d3738bb92f64
+
   "name": "node js",
   "order": 5,
   "published": 1,
@@ -77,13 +77,13 @@
  {
   "docstatus": 0,
   "doctype": "Technology Logo",
-<<<<<<< HEAD
+
   "logo": "/files/Azura.png",
   "modified": "2025-12-01 17:00:20.603426",
-=======
+
   "logo": "/files/mv.net.png",
   "modified": "2025-12-01 16:49:48.311213",
->>>>>>> 387aa583c236dbc49dbceb227422d3738bb92f64
+
   "name": "dot net",
   "order": 6,
   "published": 1,
@@ -92,10 +92,10 @@
  {
   "docstatus": 0,
   "doctype": "Technology Logo",
-<<<<<<< HEAD
+
   "logo": "/files/Azura.png",
   "modified": "2025-12-01 14:18:35.332727",
-=======
+
   "logo": "/files/frappe.png",
   "modified": "2025-12-01 16:50:39.391314",
   "name": "frappe",
@@ -108,7 +108,6 @@
   "doctype": "Technology Logo",
   "logo": "/files/Azura.png",
   "modified": "2025-12-01 14:22:20.788192",
->>>>>>> 387aa583c236dbc49dbceb227422d3738bb92f64
   "name": "azura",
   "order": 8,
   "published": 1,
