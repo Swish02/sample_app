@@ -2,13 +2,13 @@
  {
   "docstatus": 0,
   "doctype": "Technology Logo",
-<<<<<<< HEAD
+
   "logo": "/files/Azura.png",
   "modified": "2025-12-01 17:00:57.506474",
-=======
+
   "logo": "/files/Angular.png",
   "modified": "2025-12-01 14:58:44.471083",
->>>>>>> 387aa583c236dbc49dbceb227422d3738bb92f64
+
   "name": "angular",
   "order": 1,
   "published": 1,
@@ -17,13 +17,13 @@
  {
   "docstatus": 0,
   "doctype": "Technology Logo",
-<<<<<<< HEAD
+<
   "logo": "/files/Azura.png",
   "modified": "2025-12-01 17:01:14.879116",
-=======
+
   "logo": "/files/css.png",
   "modified": "2025-12-01 14:58:07.105779",
->>>>>>> 387aa583c236dbc49dbceb227422d3738bb92f64
+
   "name": "css",
   "order": 2,
   "published": 1,
@@ -32,13 +32,13 @@
  {
   "docstatus": 0,
   "doctype": "Technology Logo",
-<<<<<<< HEAD
+
   "logo": "/files/Azura.png",
   "modified": "2025-12-01 17:00:48.554593",
-=======
+
   "logo": "/files/html.png",
   "modified": "2025-12-01 14:58:23.454095",
->>>>>>> 387aa583c236dbc49dbceb227422d3738bb92f64
+
   "name": "html",
   "order": 3,
   "published": 1,
@@ -47,13 +47,13 @@
  {
   "docstatus": 0,
   "doctype": "Technology Logo",
-<<<<<<< HEAD
+
   "logo": "/files/Azura.png",
   "modified": "2025-12-01 17:00:40.382785",
-=======
+
   "logo": "/files/mv.net.png",
   "modified": "2025-12-01 16:50:05.895650",
->>>>>>> 387aa583c236dbc49dbceb227422d3738bb92f64
+
   "name": "azure",
   "order": 4,
   "published": 1,
