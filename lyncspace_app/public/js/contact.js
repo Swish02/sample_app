@@ -36,6 +36,8 @@ if (form && box) {
             localErrors.lead_name = "Name is required.";
         } else if (!/^[A-Za-z ]+$/.test(lead_name)) {
             localErrors.lead_name = "Only letters allowed. Numbers not allowed.";
+        } else if (lead_name.length < 3) {
+            localErrors.lead_name = "Name must be at least 3 characters.";
         }
 
         // ------ Email ------
@@ -57,8 +59,8 @@ if (form && box) {
         // ------ Message ------
         if (!notes) {
             localErrors.notes = "Message is required.";
-        } else if (notes.split(/\s+/).length < 10) {
-            localErrors.notes = "Message must be at least 10 words.";
+        } else if (notes.split(/\s+/).length < 5) {
+            localErrors.notes = "Message must be at least 5 words.";
         }
 
         // ---------- If frontend errors: show under inputs ----------

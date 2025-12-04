@@ -3,101 +3,99 @@
 {% block page_content %}
 
 <style>
-<<<<<<< HEAD
-.breadcrumbs {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 14px;
-  color: #6c757d; /* Grey text */
+    .breadcrumbs {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 14px;
+        color: #6c757d;
+        /* Grey text */
 
-  overflow: hidden;
-  padding: 30px 0px;
-    border-bottom: solid 1px #eee;
-   background: url("/assets/lyncspace_app/images/breadcrumbs.png") repeat;
-=======
->>>>>>> 387aa583c236dbc49dbceb227422d3738bb92f64
-
-.section-title {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.subline {
-    width: 60px;
-    height: 3px;
-    background: #27A5F9;
-    margin: 10px 0 25px 0;
-}
-
-.about-section p {
-    font-size: 15px;
-    line-height: 1.7;
-    color: #444;
-}
-
-.services-list li {
-    list-style: none;
-    margin-bottom: 8px;
-}
-
-.services-list li i {
-    color: #27A5F9;
-    margin-right: 6px;
-}
-
-.vision-box {
-    padding: 30px;
-    text-align: center;
-}
-
-.vision-box i {
-    font-size: 30px;
-    color: #27A5F9;
-    margin-bottom: 15px;
-}
-
-.tech-bar-title {
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.progress {
-    height: 6px;
-}
-
-.tech-progress {
-    height: 8px;
-    background: #e6e6e6;
-    border-radius: 50px;
-    overflow: hidden;
-}
-
-.tech-progress-bar {
-    width: 0;
-    height: 100%;
-    background: linear-gradient(90deg, #27A5F9, #1b7ec1);
-    border-radius: 50px;
-    transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
+        overflow: hidden;
+        padding: 30px 0px;
+        border-bottom: solid 1px #eee;
+        background: url("/assets/lyncspace_app/images/breadcrumbs.png") repeat;
+    }
 
 
+    .section-title {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .subline {
+        width: 60px;
+        height: 3px;
+        background: #27A5F9;
+        margin: 10px 0 25px 0;
+    }
+
+    .about-section p {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #444;
+    }
+
+    .services-list li {
+        list-style: none;
+        margin-bottom: 8px;
+    }
+
+    .services-list li i {
+        color: #27A5F9;
+        margin-right: 6px;
+    }
+
+    .vision-box {
+        padding: 30px;
+        text-align: center;
+    }
+
+    .vision-box i {
+        font-size: 30px;
+        color: #27A5F9;
+        margin-bottom: 15px;
+    }
+
+    .tech-bar-title {
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .progress {
+        height: 6px;
+    }
+
+    .tech-progress {
+        height: 8px;
+        background: #e6e6e6;
+        border-radius: 50px;
+        overflow: hidden;
+    }
+
+    .tech-progress-bar {
+        width: 0;
+        height: 100%;
+        background: linear-gradient(90deg, #27A5F9, #1b7ec1);
+        border-radius: 50px;
+        transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
 </style>
 <!--=== Breadcrumbs ===-->
-		<div class="breadcrumbs">
-         <div class="container">
-           <h1>About Us</h1>
-           <ul class="breadcrumb">
-              <li><a href="home.html">Home</a></li>
-              <li class="active">About Us</li>
-           </ul>
-         </div>
-        </div><!--/breadcrumbs-->
+<div class="breadcrumbs">
+    <div class="container">
+        <h1>About Us</h1>
+        <ul class="breadcrumb">
+            <li><a href="home.html">Home</a></li>
+            <li class="active">About Us</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
 
 
 <div class="container my-5 about-section">
 
-  
-   
+
+
     <!-- SECTION: We Are LyncSpace -->
     <h3 class="section-title">WE ARE LYNCSPACE</h3>
     <div class="subline"></div>
@@ -184,7 +182,7 @@
 
         {% for s in skills %}
         <div class="mb-4 tech-skill">
-            
+
             <!-- Title + Percentage -->
             <div class="tech-bar-title">
                 {{ s.tech_name }}
@@ -193,8 +191,7 @@
 
             <!-- Animated Progress Bar -->
             <div class="progress tech-progress">
-                <div class="progress-bar tech-progress-bar" 
-                     data-percentage="{{ s.percentage }}">
+                <div class="progress-bar tech-progress-bar" data-percentage="{{ s.percentage }}">
                 </div>
             </div>
 
@@ -233,23 +230,23 @@
 </section>
 <!-- JS to animate progress bars on scroll -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
 
-    const bars = document.querySelectorAll(".tech-progress-bar");
+        const bars = document.querySelectorAll(".tech-progress-bar");
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                let bar = entry.target;
-                let percent = bar.getAttribute("data-percentage");
-                bar.style.width = percent + "%";
-                observer.unobserve(bar);
-            }
-        });
-    }, { threshold: 0.4 });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    let bar = entry.target;
+                    let percent = bar.getAttribute("data-percentage");
+                    bar.style.width = percent + "%";
+                    observer.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.4 });
 
-    bars.forEach(bar => observer.observe(bar));
-});
+        bars.forEach(bar => observer.observe(bar));
+    });
 </script>
 
 

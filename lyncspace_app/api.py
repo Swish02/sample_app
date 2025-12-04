@@ -50,8 +50,8 @@ def submit_contact(lead_name=None, email_id=None, phone=None, notes=None):
     # ---------- Notes validation ----------
     if not notes:
         errors["notes"] = "Message is required."
-    elif len(notes.split()) < 10:
-        errors["notes"] = "Message must be at least 10 words."
+    elif len(notes.split()) < 5:
+        errors["notes"] = "Message must be at least 5 words."
 
     # ---------- If validation failed, return cleanly ----------
     if errors:
@@ -108,136 +108,80 @@ def submit_contact(lead_name=None, email_id=None, phone=None, notes=None):
 # BLOCK PUBLIC ACCESS TO /app (Desk)
 
 
-# def block_desk_access():
-#     request = frappe.local.request
-#     path = (request.path or "")
+def block_desk_access():
+    request = frappe.local.request
+    path = (request.path or "")
 
-#     # allowed for all
-#     if path.startswith("/api") or path.startswith("/assets") or path.startswith("/files"):
-#         return
+    # allowed for all
+    if path.startswith("/api") or path.startswith("/assets") or path.startswith("/files"):
+        return
 
-#     # Desk login/logout to be blocked for guest
-#     DESK_PROTECTED = [
-#         "/app/login",
-#         "/app/logout",
-#     ]
+    # Desk login/logout to be blocked for guest
+    DESK_PROTECTED = [
+        "/app/login",
+        "/app/logout",
+    ]
 
-#     # Block desk login pages
-#     if path in DESK_PROTECTED and frappe.session.user == "Guest":
-#         raise SafeRedirect("/")
+    # Block desk login pages
+    if path in DESK_PROTECTED and frappe.session.user == "Guest":
+        raise SafeRedirect("/")
 
-#     # Block desk area entirely for guest
-#     if path.startswith("/app") and frappe.session.user == "Guest":
-#         raise SafeRedirect("/")
+    # Block desk area entirely for guest
+    if path.startswith("/app") and frappe.session.user == "Guest":
+        raise SafeRedirect("/")
 
 
 
 # AUTO-CORRECT ROUTES
 
-# ---------------------------------------------------------
-# 2) AUTO-CORRECT WRONG URLS (FUZZY MATCHING)
-# ---------------------------------
-VALID_ROUTES = [
-    "/", "/home", "/index",
-    "/about", "/services", "/careers", "/contact"
-]
+# def website_routing():
+#     request = frappe.local.request
+#     path = request.path or ""
+#     user = frappe.session.user
 
-def autocorrect_routes():
-    request = frappe.local.request
-    path = (request.path or "").lower()
+#     if path.startswith(("/api", "/assets", "/files")):
+#         return
 
-    if path == "/home":
-        raise SafeRedirect("/index")
+#     if user == "Guest":
+#         if path.startswith("/app") or path == "/login" or path == "/logout":
+#             frappe.local.response = {"type": "redirect", "location": "/"}
+#             return
 
-    # Ignore internal paths
-    if (
-        path.startswith("/app")
-        or path.startswith("/api")
-        or path.startswith("/assets")
-        or path.startswith("/files")
-    ):
-        return
+#     if user != "Guest":
+#         user_type = frappe.db.get_value("User", user, "user_type")
+#         if user_type == "System User":
+#             return
 
-    # Valid route
-    if path in VALID_ROUTES:
-        return
+#         roles = frappe.get_roles(user)
 
-    # fuzzy match
-    match = difflib.get_close_matches(path, VALID_ROUTES, n=1, cutoff=0.6)
-    if match:
-        raise SafeRedirect(match[0])
+#         if "Member" in roles:
+#             if path.startswith("/app"):
+#                 frappe.local.response = {"type": "redirect", "location": "/"}
+#                 return
+#             return
 
+#         if user_type == "Website User":
+#             frappe.local.response = {"type": "redirect", "location": "/"}
+#             return
 
-# ALLOWED LOGIN ROLES
-# -----------------------------------------
+#     PUBLIC_ROUTES = [
+#         "/", "/index",
+#         "/about", "/services", "/careers", "/contact"
+#     ]
 
-# System Role allowed full access:
-SYSTEM_ALLOWED = ["Administrator"]
+#     clean = path.rstrip("/").lower()
 
-# Website User allowed login (but NOT desk):
-WEB_LOGIN_ALLOWED = ["Member"]
+#     if clean == "/home":
+#         frappe.local.response = {"type": "redirect", "location": "/"}
+#         return
 
+#     if clean.startswith(("/app", "/api", "/assets", "/files")):
+#         return
 
-# -----------------------------------------
-# BLOCK LOGIN + DESK ACCESS
-# -----------------------------------------
-def block_desk_access():
-    req = frappe.local.request
-    path = (req.path or "")
-    user = frappe.session.user
+#     if clean in PUBLIC_ROUTES:
+#         return
 
-    # -----------------------------------------
-    # ALWAYS ALLOW SYSTEM ASSETS / API
-    # -----------------------------------------
-    if path.startswith(("/assets", "/api", "/files")):
-        return
-
-    # -----------------------------------------
-    # GUEST RESTRICTIONS
-    # -----------------------------------------
-    if user == "Guest":
-
-        # Guest visiting /login → block
-        if path == "/login":
-            raise SafeRedirect("/")
-        if path =="/logout":
-            raise SafeRedirect("/")
-        # Guest visiting /app → block
-        if path.startswith("/app"):
-            raise SafeRedirect("/")
-
-        return  # Guest visiting public pages → allowed
-
-    # -----------------------------------------
-    # LOGGED-IN USER LOGIC
-    # -----------------------------------------
-    user_type = frappe.db.get_value("User", user, "user_type")
-    roles = frappe.get_roles(user)
-
-    # -----------------------------------------
-    # 1) ADMINISTRATOR → ALLOWED EVERYTHING
-    # -----------------------------------------
-    if user in SYSTEM_ALLOWED:
-        return
-
-    # -----------------------------------------
-    # 2) WEBSITE USER ACCESS LOGIC
-    # -----------------------------------------
-    if user_type == "Website User":
-
-        # Member → can login, but NOT enter desk
-        if "Member" in roles:
-            if path.startswith("/app"):
-                raise SafeRedirect("/")
-            return
-
-        # Customer or others → logout + block
-        frappe.local.response = {"type": "redirect", "location": "/"}
-        return
-
-    # -----------------------------------------
-    # 3) SYSTEM USER BUT NOT ADMIN
-    # Allowed login + desk (normal employees)
-    # -----------------------------------------
-    if user_type == "System User":
-        return
+#     match = difflib.get_close_matches(clean, PUBLIC_ROUTES, n=1, cutoff=0.6)
+#     if match:
+#         frappe.local.response = {"type": "redirect", "location": match[0]}
+#         return

@@ -1,3 +1,4 @@
+
 app_name = "lyncspace_app"
 app_title = "lyncspace_app"
 app_publisher = "admin@LyncSpace"
@@ -6,6 +7,15 @@ app_email = "brsa8495@gmail.com"
 app_license = "agpl-3.0"
 
 home_page = "index"
+
+before_request = [
+    "lyncspace_app.api.block_desk_access"
+    # "lyncspace_app.api.website_routing"
+]
+
+
+
+
 
 website_js = [
     "js/contact.js"
@@ -18,10 +28,6 @@ website_context = {
     "splash_image": "apps/lyncspace_app/lyncspace_app/public/favicon.ico"
 }
 
-before_request = [
-    "lyncspace_app.api.block_desk_access",
-    "lyncspace_app.api.autocorrect_routes"
-]
 
 
 

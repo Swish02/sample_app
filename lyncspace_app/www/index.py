@@ -1,6 +1,12 @@
 import frappe
 
 def get_context(context):
+    frappe.local.flags.web_page = True
+    frappe.local.flags.disable_route_auth = True
+    frappe.local.no_cache = 1
+    context.no_cache = True
+    context.is_public = True
+
     # ---------------------------
     # SLIDER (Homepage Carousel Slide)
     # ---------------------------
