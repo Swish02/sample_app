@@ -9,8 +9,8 @@ app_license = "agpl-3.0"
 home_page = "index"
 
 before_request = [
-    "lyncspace_app.api.block_desk_access"
-    # "lyncspace_app.api.website_routing"
+    "lyncspace_app.api.block_desk_access",
+    "lyncspace_app.api.website_routing"
 ]
 fixtures = [
     {"doctype": "Web Template"},

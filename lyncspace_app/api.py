@@ -1,8 +1,10 @@
 import re
 import difflib
 import frappe
+from frappe import _
 from frappe.utils import validate_email_address, escape_html
 from werkzeug.exceptions import HTTPException
+from werkzeug.wrappers import Response
 
 # SAFE REDIRECT CLASS
 class SafeRedirect(HTTPException):
@@ -109,79 +111,101 @@ def submit_contact(lead_name=None, email_id=None, phone=None, notes=None):
 
 
 def block_desk_access():
-    request = frappe.local.request
-    path = (request.path or "")
+    req = frappe.local.request
+    path = (req.path or "")
+    user = frappe.session.user
 
-    # allowed for all
-    if path.startswith("/api") or path.startswith("/assets") or path.startswith("/files"):
+    # Allow static + API resources for everyone
+    if path.startswith(("/assets", "/api", "/files")):
         return
 
-    # Desk login/logout to be blocked for guest
-    DESK_PROTECTED = [
-        "/app/login",
-        "/app/logout",
-    ]
+    # ------------------- GUEST -------------------
+    if user == "Guest":
+        # Block login pages
+        if path in ["/login", "/logout"]:
+            raise SafeRedirect("/")
 
-    # Block desk login pages
-    if path in DESK_PROTECTED and frappe.session.user == "Guest":
+        # Block Desk entirely
+        if path.startswith("/app"):
+            raise SafeRedirect("/")
+
+        # Guest browsing website pages is allowed
+        return
+
+    # ------------------- LOGGED-IN USER -------------------
+    # Only allow Administrator full Desk access
+    if user == "Administrator":
+        # Admin can do everything
+        return
+
+    # Every other user — block Desk and login/logout pages
+    if path.startswith("/app") or path in ["/login", "/logout"]:
         raise SafeRedirect("/")
 
-    # Block desk area entirely for guest
-    if path.startswith("/app") and frappe.session.user == "Guest":
+    # They can still browse public website pages
+    return
+
+
+# =========================
+# PUBLIC ROUTES + AUTOCORRECT
+# =========================
+PUBLIC_ROUTES = [
+    "",      # root after rstrip("/")
+    "/",     # explicit root
+    "/index",
+    "/about",
+    "/services",
+    "/careers",
+    "/contact",
+]
+
+
+# =========================
+# WEBSITE ROUTING HOOK
+# (hook: website_before_render / website_route / etc.)
+# =========================
+def website_routing():
+    request = frappe.local.request
+    path = request.path or ""
+    user = frappe.session.user
+
+    # Allow assets + API always
+    if path.startswith(("/api", "/assets", "/files")):
+        return
+
+    # Normalize path (remove trailing slash, lower-case)
+    clean = path.rstrip("/").lower()
+
+    # --------------------
+    # 1. DESK + LOGIN ACCESS
+    #    Only Administrator
+    # --------------------
+    if clean.startswith("/app") or clean in ["/login", "/logout"]:
+        if user != "Administrator":
+            # Non-admin (including Guest) → push them to homepage
+            raise SafeRedirect("/")
+        # Admin is allowed
+        return
+
+    # --------------------
+    # 2. ROUTE NORMALIZATION
+    # --------------------
+    # /home → /
+    if clean == "/home":
         raise SafeRedirect("/")
 
+    # Internal paths (redundant safety)
+    if clean.startswith(("/api", "/assets", "/files")):
+        return
 
+    # Already a valid public route
+    if clean in PUBLIC_ROUTES:
+        return
 
-# AUTO-CORRECT ROUTES
-
-# def website_routing():
-#     request = frappe.local.request
-#     path = request.path or ""
-#     user = frappe.session.user
-
-#     if path.startswith(("/api", "/assets", "/files")):
-#         return
-
-#     if user == "Guest":
-#         if path.startswith("/app") or path == "/login" or path == "/logout":
-#             frappe.local.response = {"type": "redirect", "location": "/"}
-#             return
-
-#     if user != "Guest":
-#         user_type = frappe.db.get_value("User", user, "user_type")
-#         if user_type == "System User":
-#             return
-
-#         roles = frappe.get_roles(user)
-
-#         if "Member" in roles:
-#             if path.startswith("/app"):
-#                 frappe.local.response = {"type": "redirect", "location": "/"}
-#                 return
-#             return
-
-#         if user_type == "Website User":
-#             frappe.local.response = {"type": "redirect", "location": "/"}
-#             return
-
-#     PUBLIC_ROUTES = [
-#         "/", "/index",
-#         "/about", "/services", "/careers", "/contact"
-#     ]
-
-#     clean = path.rstrip("/").lower()
-
-#     if clean == "/home":
-#         frappe.local.response = {"type": "redirect", "location": "/"}
-#         return
-
-#     if clean.startswith(("/app", "/api", "/assets", "/files")):
-#         return
-
-#     if clean in PUBLIC_ROUTES:
-#         return
-
-#     match = difflib.get_close_matches(clean, PUBLIC_ROUTES, n=1, cutoff=0.6)
-#     if match:
-#         frappe.local.response = {"type": "redirect", "location": match[0]}
-#         return
+    # --------------------
+    # 3. AUTO-CORRECT WRONG URLS
+    # --------------------
+    match = difflib.get_close_matches(clean, PUBLIC_ROUTES, n=1, cutoff=0.6)
+    if match:
+        target = match[0] or "/"   # if match is "" → redirect to "/"
+        raise SafeRedirect(target)
